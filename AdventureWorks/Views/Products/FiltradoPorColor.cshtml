@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AdventureWorks.ViewModels.ProductoPorColorViewModel>
+
+    @{
+        ViewData["Title"] = "Index";
+    }
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                Ventas de productos de ese color:
+            </th>
+            
+
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @foreach (var hijo in item.VentasDeProducto)
+                {
+                    @Html.DisplayFor(modelItem=> hijo.ProductoVentaId)
+                    @Html.DisplayFor(modelItem=> hijo.ProductName)
+                    @Html.DisplayFor(modelItem=> hijo.unidadesVendidas)
+                    <br/>
+                }
+            </td>
+            
+
+        </tr>
+}
+    </tbody>
+</table>
